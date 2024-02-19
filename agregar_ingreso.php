@@ -29,23 +29,31 @@ $result = mysqli_query($conn, $sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar Ingreso</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Agregar Ingreso</h1> <br>
-    <a href="index.php">Menu Principal</a>
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-        <label for="producto">Producto:</label><br>
-        <select id="producto" name="producto_id">
-            <?php
-            // Mostrar opciones del desplegable con los productos
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo "<option value='" . $row["id"] . "'>" . $row["nombre"] . "</option>";
-            }
-            ?>
-        </select><br>
-        <label for="cantidad">Cantidad:</label><br>
-        <input type="number" id="cantidad" name="cantidad" min="1" required><br><br>
-        <input type="submit" value="Agregar Ingreso">
-    </form>
+    <div class="container">
+        <h1>Agregar Ingreso</h1>
+        <a href="index.php" class="btn btn-primary">Menu Principal</a>
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            <div class="form-group">
+                <label for="producto">Producto:</label>
+                <select id="producto" name="producto_id" class="form-control">
+                    <?php
+                    // Mostrar opciones del desplegable con los productos
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<option value='" . $row["id"] . "'>" . $row["nombre"] . "</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" id="cantidad" name="cantidad" min="1" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Agregar Ingreso</button>
+        </form>
+    </div>
 </body>
 </html>
